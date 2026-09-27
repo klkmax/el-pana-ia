@@ -1,29 +1,35 @@
-# El Pana IA — Web PWA + Proxy Max AI
+# El Pana IA
 
-Agente conversacional dominicano (jerga / español neutro) + conexión a **Max AI** vía proxy FastAPI seguro.
+Web PWA + proxy FastAPI (Max AI) + RAG semántico + voz + Telegram + herramientas.
 
-## Ver en vivo
+## Repo
+https://github.com/klkmax/el-pana-ia
 
-- Repo: https://github.com/klkmax/el-pana-ia
-- Local: `python3 -m http.server 8080` en esta carpeta
+## Netlify (front estático)
+Proyecto: https://app.netlify.com/projects/el-pana-ia  
+URL: https://el-pana-ia.netlify.app  
+(Sube la carpeta `pana-ia` o el ZIP en Deploys.)
 
-## Estructura
-
-```
-pana-ia/
-├── index.html, css/, js/, sw.js, manifest.json, icons/
-└── backend/
-    ├── max_ai_proxy.py
-    ├── requirements.txt
-    └── README.md
-```
-
-## Backend
-
+## Local
 ```bash
-cd backend
+# Front
+cd pana-ia && python3 -m http.server 8080
+
+# Proxy
+cd pana-ia/backend
 pip install -r requirements.txt
-export AGENT_TOKEN="secreto"
-export MAX_AI_URL="http://127.0.0.1:11434"
+export AGENT_TOKEN=secreto
 uvicorn max_ai_proxy:app --host 0.0.0.0 --port 8000
+
+# Telegram (opcional)
+export TELEGRAM_BOT_TOKEN=...
+export AUTHORIZED_USER_ID=...
+python telegram_bot.py
 ```
+
+## Features
+- Chat streaming + Max AI
+- RAG híbrido (léxico + embeddings)
+- Voz (mic + TTS)
+- Web search + sandbox Python
+- Telegram
